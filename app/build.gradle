@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "${base_application_name}.lockscreensample"
+        minSdkVersion 16
+        targetSdkVersion 22
+        versionCode 3
+        versionName "1.0.2"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin' // src/main/kotlin 디렉터리를 소스 디렉터리에 추가합니다.
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile support_appcompat
+    compile project(':lockscreenusingservice')
+}
